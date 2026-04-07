@@ -1,0 +1,17 @@
+{
+  "name": "data-monitoring-service",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "app.js",
+  "description": "Proactive data monitoring service that runs scheduled SPARQL queries and detects anomalies",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lblod/data-monitoring-service.git"
+  },
+  "author": "info@redpencil.io",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^9.0.1",
+    "sparqljs": "^3.7.1"
+  }
+}

@@ -1,0 +1,10 @@
+export const MONITORING_QUERIES_FOLDER = process.env.MONITORING_QUERIES_FOLDER || '/config/queries';
+export const MONITORING_GRAPH = process.env.MONITORING_GRAPH || 'http://mu.semte.ch/graphs/system/monitoring';
+export const JOBS_GRAPH = process.env.JOBS_GRAPH || 'http://mu.semte.ch/graphs/system/jobs';
+export const EMAIL_GRAPH = process.env.EMAIL_GRAPH || 'http://mu.semte.ch/graphs/system/email';
+export const ANOMALY_THRESHOLD_PERCENT = parseFloat(process.env.ANOMALY_THRESHOLD_PERCENT || '10');
+export const ANOMALY_COMPARISON_WINDOW = parseInt(process.env.ANOMALY_COMPARISON_WINDOW || '5');
+export const JOB_CREATOR_URI = process.env.JOB_CREATOR_URI || 'http://data.lblod.info/services/id/data-monitoring-service';
+export const JOB_OPERATION_URI = process.env.JOB_OPERATION_URI || 'http://redpencil.data.gift/id/jobs/concept/JobOperation/dataMonitoring';
+export const TASK_OPERATION_URI = process.env.TASK_OPERATION_URI || 'http://redpencil.data.gift/id/jobs/concept/TaskOperation/dataMonitoring/runQueries';
+export const EMAIL_FOLDER_URI = process.env.EMAIL_FOLDER_URI || 'http://data.lblod.info/id/mail-folders/2';
