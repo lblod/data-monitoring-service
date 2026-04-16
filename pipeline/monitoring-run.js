@@ -57,7 +57,13 @@ async function handleFailure(taskUri, jobUri, error) {
 }
 
 async function executeMonitoringRun(jobUri, taskUri) {
-  const queries = await loadMonitoringQueries();
+  let queries;
+  try {
+    queries = await loadMonitoringQueries();
+  } catch (error) {
+    await createJobError(taskUri, `Failed to load monitoring queries: ${error.message}`);
+    throw error;
+  }
 
   if (!queries.length) {
     console.warn('No monitoring queries found');
@@ -130,4 +136,5 @@ async function executeMonitoringRun(jobUri, taskUri) {
   } else {
     console.info('Monitoring run completed — no anomalies detected');
   }
+
 }
