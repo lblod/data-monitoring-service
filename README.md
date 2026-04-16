@@ -34,18 +34,18 @@ INSERT DATA {
   GRAPH <http://mu.semte.ch/graphs/system/jobs> {
     <http://data.lblod.info/id/scheduled-job/data-monitoring>
       a cogs:ScheduledJob ;
-      mu:uuid "data-monitoring-scheduled-job" ;
+      mu:uuid "420f2726-c382-4f68-9ff4-5a3a2e4c93d3" ;
       task:operation <http://redpencil.data.gift/id/jobs/concept/JobOperation/dataMonitoring> ;
       task:schedule <http://data.lblod.info/id/schedule/data-monitoring> .
 
     <http://data.lblod.info/id/schedule/data-monitoring>
       a task:CronSchedule ;
-      mu:uuid "data-monitoring-schedule" ;
+      mu:uuid "241ff55b-0eee-4d41-b2b7-97ff9a34de1b" ;
       schema:repeatFrequency "0 2 * * *" .
 
     <http://data.lblod.info/id/scheduled-task/data-monitoring>
       a task:ScheduledTask ;
-      mu:uuid "data-monitoring-scheduled-task" ;
+      mu:uuid "ed8d5b85-4438-474f-bf47-384dd7606d30" ;
       dct:isPartOf <http://data.lblod.info/id/scheduled-job/data-monitoring> ;
       dct:created "2026-04-13T00:00:00.000Z"^^xsd:dateTime ;
       dct:modified "2026-04-13T00:00:00.000Z"^^xsd:dateTime ;
