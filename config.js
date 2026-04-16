@@ -8,3 +8,5 @@ export const JOB_CREATOR_URI = process.env.JOB_CREATOR_URI || 'http://data.lblod
 export const JOB_OPERATION_URI = process.env.JOB_OPERATION_URI || 'http://redpencil.data.gift/id/jobs/concept/JobOperation/dataMonitoring';
 export const TASK_OPERATION_URI = process.env.TASK_OPERATION_URI || 'http://redpencil.data.gift/id/jobs/concept/TaskOperation/dataMonitoring/runQueries';
 export const EMAIL_FOLDER_URI = process.env.EMAIL_FOLDER_URI || 'http://data.lblod.info/id/mail-folders/2';
+export const EMAIL_FROM = process.env.EMAIL_FROM || 'noreply@lblod.info';
+export const EMAIL_TO = process.env.EMAIL_TO || 'monitoring@lblod.info';
