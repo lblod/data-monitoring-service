@@ -14,13 +14,21 @@ The service only executes aggregate count queries - no personal or identifiable 
 
 ## Scheduling
 
-Uses `scheduled-job-controller-service`. Seed a `cogs:ScheduledJob` via migration:
+Uses `scheduled-job-controller-service`. When the cron fires, the controller
+instantiates a `cogs:Job` + `task:Task` from the `cogs:ScheduledJob` +
+`task:ScheduledTask` template. This service listens on `/delta` for the new
+task and executes the monitoring run against the existing task/job (no new
+job is created by this service in the scheduled flow).
+
+Seed the template via migration:
 
 ```sparql
 PREFIX cogs: <http://vocab.deri.ie/cogs#>
 PREFIX task: <http://redpencil.data.gift/vocabularies/tasks/>
 PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX schema: <http://schema.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 INSERT DATA {
   GRAPH <http://mu.semte.ch/graphs/system/jobs> {
@@ -32,12 +40,24 @@ INSERT DATA {
 
     <http://data.lblod.info/id/schedule/data-monitoring>
       a task:CronSchedule ;
+      mu:uuid "data-monitoring-schedule" ;
       schema:repeatFrequency "0 2 * * *" .
+
+    <http://data.lblod.info/id/scheduled-task/data-monitoring>
+      a task:ScheduledTask ;
+      mu:uuid "data-monitoring-scheduled-task" ;
+      dct:isPartOf <http://data.lblod.info/id/scheduled-job/data-monitoring> ;
+      dct:created "2026-04-13T00:00:00.000Z"^^xsd:dateTime ;
+      dct:modified "2026-04-13T00:00:00.000Z"^^xsd:dateTime ;
+      task:index "0" ;
+      task:operation <http://redpencil.data.gift/id/jobs/concept/TaskOperation/dataMonitoring/runQueries> .
   }
 }
 ```
 
-The delta-notifier must route `adms:status` changes to both this service and `scheduled-job-controller`.
+The delta-notifier must route `adms:status` inserts to both this service and
+`scheduled-job-controller`. This service additionally filters the changeset
+for inserts of `task:operation = <…/TaskOperation/dataMonitoring/runQueries>`.
 
 ## Query configuration
 
